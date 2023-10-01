@@ -1,0 +1,41 @@
+# Ignore node_modules directories (these should be installed via npm/yarn)
+**/node_modules/
+
+# Ignore log files and any generated files
+**/*.log
+**/*.lock
+**/dist/
+**/build/
+
+# Ignore environment-specific files (e.g., .env, .env.local)
+**/.env
+**/.env.local
+**/.env.*.local
+
+# Ignore user-specific files
+**/.idea/
+**/.vscode/
+
+# Ignore build artifacts and dependencies for any front-end framework (e.g., React, Angular, Vue)
+# You should customize these for your specific frontend technology
+# Example for React:
+**/build/
+**/coverage/
+**/node_modules/
+**/public/
+
+# Ignore compiled files for TypeScript, if applicable
+**/*.js
+**/*.js.map
+**/*.d.ts
+
+# Ignore database configuration files or data dumps (if not meant to be version-controlled)
+**/database.config.js
+**/dump.sql
+
+# Ignore IDE-specific files and directories (e.g., .DS_Store, Thumbs.db)
+.DS_Store
+Thumbs.db
+
+# Ignore any secrets or sensitive information
+**/secrets.json
