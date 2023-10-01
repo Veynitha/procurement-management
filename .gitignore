@@ -12,9 +12,6 @@
 **/.env.local
 **/.env.*.local
 
-# Ignore user-specific files
-**/.idea/
-**/.vscode/
 
 # Ignore build artifacts and dependencies for any front-end framework (e.g., React, Angular, Vue)
 # You should customize these for your specific frontend technology
@@ -24,18 +21,3 @@
 **/node_modules/
 **/public/
 
-# Ignore compiled files for TypeScript, if applicable
-**/*.js
-**/*.js.map
-**/*.d.ts
-
-# Ignore database configuration files or data dumps (if not meant to be version-controlled)
-**/database.config.js
-**/dump.sql
-
-# Ignore IDE-specific files and directories (e.g., .DS_Store, Thumbs.db)
-.DS_Store
-Thumbs.db
-
-# Ignore any secrets or sensitive information
-**/secrets.json
