@@ -54,4 +54,4 @@ const requestSchema = new Schema({
 
 const RequestModel = mongoose.model("Request", requestSchema);
 
-module.exports = RequestModel;
+module.exports = {RequestModel};
