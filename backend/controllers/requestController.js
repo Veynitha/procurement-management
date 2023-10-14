@@ -23,7 +23,7 @@ exports.createRequest = async (req, res) => {
     await request.save();
     res.status(201).json(request);
   } catch (error) {
-    console.log("Error entering request", err);
+    console.log("Error entering request", error);
     res.status(400).json({ error: error.message });
   }
 };
@@ -35,4 +35,50 @@ exports.getAllRequests = async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
-}
+};
+
+
+
+
+ exports.updateRequestStatus = async (req, res) => {
+  
+
+  try {
+    const { id, newStatus } = req.body;
+    
+
+    const updatedRequest = await RequestModel.findByIdAndUpdate(
+      id,
+      { status: newStatus },
+      { new: true }
+    );
+
+    if (!updatedRequest) {
+      return res.status(404).json({ message: 'Request not found' });
+    }
+
+    return res.json({ message: 'Request status updated successfully', updatedRequest });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+ exports.getRequest =async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const request = await RequestModel.findById({_id:id });
+
+    if (!request) {
+      return res.status(404).json({ error: 'Request not found' });
+    }
+
+    res.json(request);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Server error' });
+  }
+};
+
+
