@@ -39,8 +39,8 @@ const Get_all_rqs = () => {
           </thead>
           <tbody>
             {requests.map((request) => {
-              return request.items.map((item, index) => (
-                <tr key={`${request.requestId}-${index}`}>
+              return request.items.map((item) => (
+                <tr key={`${request._id}`}>
                   <td>{request.requestId}</td>
                   <td>{request.name}</td>
                   <td>{request.supplierName}</td>
@@ -52,8 +52,8 @@ const Get_all_rqs = () => {
                   <td>{request.total}</td>
                   <td>{request.status}</td>
                   <td>
-                  <Link to={`/update/${request.requestId}`} className="btn btn-success">
-                      Update
+                  <Link to={`/update/${request._id}`} className="btn btn-success">
+                      Approve/Decline
                     </Link>
                   </td>
                 </tr>

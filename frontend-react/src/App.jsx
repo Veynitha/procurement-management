@@ -10,7 +10,7 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<GetAllRqs/>}></Route>
-          <Route path='/update:requestId' element={<SetStatus />}></Route>
+          <Route path='/update/:id' element={<SetStatus />}></Route>
         </Routes>
       </BrowserRouter>
     </div>
