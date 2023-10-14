@@ -20,6 +20,11 @@ const PurchaseOrderSchema = new mongoose.Schema({
         type: String,
         required: true,
         unique: true,
+      },
+      requestReference: {
+        type: String,
+        required: true,
+        unique: true,
       },  
       companyDetails: {
         type: String,

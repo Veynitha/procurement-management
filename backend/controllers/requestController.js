@@ -1,4 +1,4 @@
-const Request = require('../models/Request');
+const {RequestModel} = require('../models/Request');
 
 exports.createRequest = async (req, res) => {
   try {
@@ -9,7 +9,7 @@ exports.createRequest = async (req, res) => {
     const status = total < 100000 ? 'approved' : 'pending';
 
     // Create a new request instance
-    const request = new Request({
+    const request = new RequestModel({
       requestId,
       name,
       supplierName,
@@ -30,7 +30,7 @@ exports.createRequest = async (req, res) => {
 
 exports.getAllRequests = async (req, res) => {
   try {
-    const requests = await Request.find();
+    const requests = await RequestModel.find();
     res.status(200).json(requests);
   } catch (error) {
     res.status(500).json({ error: error.message });

@@ -4,6 +4,7 @@ exports.createPurchaseOrder = async (req, res) => {
   try {
     const {
       purchaseOrderReference,
+      requestReference,
       companyDetails,
       supplierDetails,
       createdAt,
@@ -16,6 +17,7 @@ exports.createPurchaseOrder = async (req, res) => {
 
     const newPurchaseOrder = PurchaseOrder({
         purchaseOrderReference,
+        requestReference,
         companyDetails,
         supplierDetails,
         createdAt,
