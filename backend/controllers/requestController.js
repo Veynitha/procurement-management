@@ -40,12 +40,11 @@ exports.getAllRequests = async (req, res) => {
 
 
 
- exports.updateRequestStatus = async (req, res) => {
-  
-
+exports.updateRequestStatus = async (req, res) => {
   try {
-    const { id, newStatus } = req.body;
-    
+    const { newStatus } = req.body; 
+
+    const id = req.params.id; 
 
     const updatedRequest = await RequestModel.findByIdAndUpdate(
       id,
@@ -63,6 +62,7 @@ exports.getAllRequests = async (req, res) => {
     return res.status(500).json({ message: 'Internal server error' });
   }
 };
+
 
  exports.getRequest =async (req, res) => {
   const { id } = req.params;

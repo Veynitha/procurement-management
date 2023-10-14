@@ -47,7 +47,7 @@ const requestSchema = new Schema({
   },
   status: {
     type: String,
-    enum: ['approved', 'pending'],
+    enum: ['approved', 'pending','reject'],
     required: true,
   },
 });
