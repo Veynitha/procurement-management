@@ -19,7 +19,7 @@ const RequestController = require('../controllers/requestController');
 
 router.post("/request", RequestController.createRequest);
 router.get('/request', RequestController.getAllRequests);
-router.put('/updateRequest', RequestController.updateRequestStatus);
+router.put('/updateRequest/:id', RequestController.updateRequestStatus);
 router.get('/get-request/:id',RequestController.getRequest);
 
 module.exports = router;
