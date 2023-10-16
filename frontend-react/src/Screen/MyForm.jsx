@@ -92,39 +92,53 @@ const MyForm = () => {
         value={supplierOrderReference}
         onChange={(e) => setSupplierOrderReference(e.target.value)}
       />
-      <button onClick={handleSubmit}>Submit</button>
+      <button style={styles.button} onClick={handleSubmit}>Submit</button>
     </div>
   );
 };
 
 const styles = {
-    container: {
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'center',
-      alignItems: 'center',
-      padding: 20,
-      backgroundColor: '#ecf0f1',
-    },
-    label: {
-      alignSelf: 'flex-start',
-      marginBottom: 5,
-    },
-    input: {
-      width: '100%',
-      height: 40,
-      border: '1px solid gray',
-      marginBottom: 15,
-      padding: '0 10px',
-    },
-    button: {
-      padding: '10px 20px',
-      backgroundColor: '#4CAF50',
-      color: 'white',
-      border: 'none',
-      borderRadius: '5px',
-      cursor: 'pointer',
-    },
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: '40px 10px', // Adjusted padding
+    backgroundColor: '#ffffff',
+    minHeight: '100vh',
+    maxWidth: 400, // Added max width
+    margin: '0 auto', // Center align
+  },
+  label: {
+    alignSelf: 'flex-start',
+    marginBottom: 10,
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#333',
+  },
+  input: {
+    width: '100%', // Adjusted width
+    height: 40,
+    border: '1px solid #ddd',
+    borderRadius: 6,
+    marginBottom: 20,
+    padding: '0 12px',
+    fontSize: 16,
+    color: '#555',
+  },
+  button: {
+    width: '100%', // Adjusted width
+    padding: '12px 24px',
+    backgroundColor: '#4CAF50', // Green color
+    color: 'white',
+    border: 'none',
+    borderRadius: 20, // Rounded border
+    cursor: 'pointer',
+    fontSize: 16,
+    fontWeight: 'bold',
+    textTransform: 'uppercase',
+    transition: 'background-color 0.3s',
+  },
   };
 
 export default MyForm;

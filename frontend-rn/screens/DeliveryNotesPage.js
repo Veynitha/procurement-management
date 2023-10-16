@@ -88,7 +88,7 @@ const DeliveryNotesPage = () => {
       <Text style={styles.title}>Supplier Order Reference: {item.supplierOrderReference}</Text>
       <Text style={styles.text}>Delivery ID: {item.deliveryid}</Text>
       <Text style={styles.text}>Total: {item.total}</Text>
-      <Text style={styles.text}>Delivery Note Status: {item.deliveryAdviceNoteStatus}</Text>
+      {/* <Text style={styles.text}>Delivery Note Status: {item.deliveryAdviceNoteStatus}</Text> */}
       {/* Rendering item details */}
       <Text style={styles.text}>Item Name: {item.item.itemName}</Text>
       <Text style={styles.text}>Quantity: {item.item.quantity}</Text>
@@ -147,10 +147,13 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   item: {
-    backgroundColor: '#f9c2ff',
+    backgroundColor: '#ffffff',
     padding: 20,
     marginVertical: 8,
-    marginHorizontal: 16,
+    marginHorizontal: 2,
+    borderColor: '#000000',
+    borderWidth: 1,
+    borderStyle: 'solid',
   },
   title: {
     fontSize: 16,
