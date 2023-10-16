@@ -32,6 +32,11 @@ const invoiceSchema = new mongoose.Schema({
         type: Date,
         required: true
     },
+    isGenerated: {
+        type: Boolean,
+        required: true,
+        default: false
+    },
     items: {
         type: [itemSchema],
         required: true,

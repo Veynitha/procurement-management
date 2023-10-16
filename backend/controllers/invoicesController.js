@@ -3,6 +3,7 @@ const Invoice = require('../models/invoiceModel');
 // Create a new invoice
 exports.createInvoice = async (req, res) => {
     try {
+        console.log(req)
         const { InvoiceDate, DueAmount, OrderReference, POReference, items } = req.body;
 
         const newInvoice = Invoice({

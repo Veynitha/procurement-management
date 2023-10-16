@@ -1,9 +1,10 @@
 import React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Navbar from './components/NavBar'
 //Screens 
 import GetAllRqs from './Screen/Get_all_rqs';
 import SetStatus from './Screen/Set_rq_status';
+import RQ2PO from './Screen/Req_PO';
+import PurchesOrders from './Screen/Get_all_POS';
 import Invoice from './Screen/Invoices';
 import ViewInvoiceOrder from './components/ViewInvoiceOrder';
 import SupplyOrders from './Screen/SupplyOrders';
@@ -17,12 +18,12 @@ import MyForm from './Screen/MyForm';
 const App = () => {
   return (
     <div>
-
       <BrowserRouter>
-        {/* <Navbar /> */}
         <Routes>
           <Route path='/' element={<Invoice />}></Route>
           <Route path='/update/:id' element={<SetStatus />}></Route>
+          <Route path='/rq2po/:id' element={<RQ2PO/>}></Route>
+          <Route path='/po' element={<PurchesOrders />}></Route>
           <Route path='/invoices' element={<Invoice />}></Route>
           <Route path='/invoices/:id' element={<ViewInvoiceOrder />}></Route>
           <Route path='/requests' element={<GetAllRqs />}></Route>
