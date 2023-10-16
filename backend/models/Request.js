@@ -25,7 +25,15 @@ const requestSchema = new Schema({
     type: String,
     required: true,
   },
+  approvedBy: {
+    type: String,
+    required: false,
+  },
   supplierName: {
+    type: String,
+    required: true,
+  },
+  companyName: {
     type: String,
     required: true,
   },
@@ -47,9 +55,9 @@ const requestSchema = new Schema({
   },
   status: {
     type: String,
-    enum: ['approved', 'pending','reject'],
+    enum: ['approved', 'pending','reject', 'placed'],
     required: true,
-  },
+  }
 });
 
 const RequestModel = mongoose.model("Request", requestSchema);

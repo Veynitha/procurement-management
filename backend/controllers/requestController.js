@@ -2,17 +2,20 @@ const {RequestModel} = require('../models/Request');
 
 exports.createRequest = async (req, res) => {
   try {
-    const { requestId, name, supplierName, deliveryDate, address, items } = req.body;
+    const { requestId, name, supplierName, deliveryDate, address, items, companyName } = req.body;
 
     // Calculate total and status
     const total = items.reduce((acc, item) => acc + parseFloat(item.agreedPrice) * parseInt(item.quantity), 0);
     const status = total < 100000 ? 'approved' : 'pending';
+    const approvedBy = total < 100000 ? 'name' : '';
 
     // Create a new request instance
     const request = new RequestModel({
       requestId,
       name,
+      approvedBy,
       supplierName,
+      companyName,
       deliveryDate,
       address,
       items,
@@ -42,13 +45,14 @@ exports.getAllRequests = async (req, res) => {
 
 exports.updateRequestStatus = async (req, res) => {
   try {
-    const { newStatus } = req.body; 
+    const { newStatus , approvedBy} = req.body; 
 
     const id = req.params.id; 
 
     const updatedRequest = await RequestModel.findByIdAndUpdate(
       id,
       { status: newStatus },
+      { approvedBy: approvedBy},
       { new: true }
     );
 

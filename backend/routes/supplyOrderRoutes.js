@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const {createSupplyOrder, getAllSupplyOrders, incrementDeliveryCount, addItemToSupplyOrder} = require('../controllers/supplyOrderController');
+const {createSupplyOrder, getAllSupplyOrders, incrementDeliveryCount, addItemToSupplyOrder, removeItemFromSupplyOrder, getSupplyOrderById} = require('../controllers/supplyOrderController');
 
 // Create a new supply order
 router.post('/create-supply-orders', createSupplyOrder);
@@ -15,7 +15,7 @@ router.put('/increment-delivery-count', incrementDeliveryCount);
 router.put('/add-item-to-supply-order', addItemToSupplyOrder);
 
 //Remove item from supply order
-router.post('/remove-item-from-supply-order', addItemToSupplyOrder);
+router.post('/remove-item-from-supply-order', removeItemFromSupplyOrder);
 
-
+router.get('/get-supply-order-by-id/:id', getSupplyOrderById);
 module.exports = router;

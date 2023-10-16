@@ -9,6 +9,7 @@ exports.createSupplyOrder = async (req, res) => {
       purchaseOrderReference,
       createdAt,
       deliveryAddress,
+      requiredDate,
       companyDetails,
       total,
       items,
@@ -23,6 +24,7 @@ exports.createSupplyOrder = async (req, res) => {
       purchaseOrderReference,
       createdAt,
       deliveryAddress,
+      requiredDate,
       companyDetails,
       itemCount,
       deliverCount,
@@ -111,13 +113,25 @@ exports.removeItemFromSupplyOrder = async (req, res) => {
       supplyOrder.total -= supplyOrder.items[itemIndex].agreedPrice * supplyOrder.items[itemIndex].quantity;
   
       // Save the updated supply order
-      const updatedSupplyOrder = await supplyOrder.save();
+      const updatedSupplyOrder = await supplyOrder.save().catch((err) => {console.log(err)});
   
       return res.json(updatedSupplyOrder);
     } catch (error) {
       return res.status(500).json({ error: 'Internal server error' });
     }
   };
+
+  exports.getSupplyOrderById = async (req, res) => {
+    try {
+      const supplyOrder = await SupplyOrder.findById(req.params.id);
+      if (!supplyOrder) {
+        return res.status(404).json({ error: 'Supply order not found' });
+      }
+      res.status(200).json(supplyOrder);
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+  }
   
 
 

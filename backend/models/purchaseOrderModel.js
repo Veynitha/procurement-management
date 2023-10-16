@@ -16,11 +16,6 @@ const itemSchema = new mongoose.Schema({
   });
 
 const PurchaseOrderSchema = new mongoose.Schema({
-      purchaseOrderReference: {
-        type: String,
-        required: true,
-        unique: true,
-      },
       requestReference: {
         type: String,
         required: true,
@@ -39,7 +34,7 @@ const PurchaseOrderSchema = new mongoose.Schema({
         required: true,
       },
       requiredDate: {
-        type: String,
+        type: Date,
         required: true,
       },
       siteDetails: {

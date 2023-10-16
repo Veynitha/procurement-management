@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
-import { Link ,useParams} from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 
 const Get_all_rqs = () => {
@@ -9,9 +9,9 @@ const Get_all_rqs = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/api/request")
+      .get("http://localhost:3018/api/request")
       .then(response => {
-        setRequests(response.data); 
+        setRequests(response.data);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
@@ -52,17 +52,16 @@ const Get_all_rqs = () => {
                   <td>{request.total}</td>
                   <td>{request.status}</td>
                   <td>
-                  <Link to={`/update/${request._id}`} className="btn btn-success">
+                    <Link to={`/update/${request._id}`} className="btn btn-success">
                       Approve/Decline
-                    </Link>
-                  </td>
+                    </Link></td>
                 </tr>
               ));
             })}
           </tbody>
         </table>
       </div>
-    </div>
+    </div >
   );
 };
 

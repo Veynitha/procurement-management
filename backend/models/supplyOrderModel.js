@@ -34,6 +34,10 @@ const SupplyOrderSchema = new mongoose.Schema({
         type: String,
         required: true,
       },
+    requiredDate: {
+        type: Date,
+        required: true,
+    },
     companyDetails: {
         type: String,
         required: true,

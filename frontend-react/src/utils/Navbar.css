@@ -1,0 +1,33 @@
+.left-sidebar {
+    position: absolute;
+    left: 1.56%;
+    right: 81.82%;
+    top: 11.52%;
+    bottom: 3.19%;
+    background: #3C2E00;
+    box-shadow: 0px 0px 6px rgba(84, 84, 84, 0.25);
+    border-radius: 20px;
+}
+
+.side-bar-link {
+    width: 100%; /* Adjust the width as needed */
+    height: 30px; /* Adjust the height as needed */
+    display: block; /* To make the link take the entire width */
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+
+    color: #FFFFFF;
+    text-decoration: none; /* Remove underlines */
+
+    margin: 5px 0; /* Add margin between links */
+}
+
+.side-bar-link:hover {
+    background-color: #555; /* Change the background color on hover */
+    border-radius: 5px; /* Add rounded corners on hover */
+    transition: background-color 0.3s ease; /* Smooth transition on hover */
+}
