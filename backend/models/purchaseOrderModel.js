@@ -16,39 +16,47 @@ const itemSchema = new mongoose.Schema({
   });
 
 const PurchaseOrderSchema = new mongoose.Schema({
-      purchaseOrderReference: {
-        type: String,
-        required: true,
-        unique: true,
-      },  
-      companyDetails: {
-        type: String,
-        required: true,
-      },
-      supplierDetails: {
-        type: String,
-        required: true,
-      },
-      deliveryAddress: {
-        type: String,
-        required: true,
-      },
-      requiredDate: {
-        type: String,
-        required: true,
-      },
-      siteDetails: {
-        type: String,
-        required: true
-      },
-      total: {
-        type: Number,
-        required: true,
-      },
-      items: {
-        type: [itemSchema], // Embed itemSchema as a subdocument array
-        required: true,
-      },
+  requestReference: {
+    type: String,
+    required: true,
+  },
+  createdBy: {
+    type: String,
+    required: true,
+  },
+  approvedBy: {
+    type: String,
+    required: false,
+  },
+  supplierName: {
+    type: String,
+    required: true,
+  },
+  companyName: {
+    type: String,
+    required: true,
+  },
+  deliveryDate: {
+    type: Date,
+    required: true,
+  },
+  deliveryAddress: {
+    type: String,
+    required: true,
+  },
+  items: {
+    type: [itemSchema], // Embed itemSchema as a subdocument array
+    required: true,
+  },
+  total: {
+    type: Number,
+    required: true,
+  },
+  status: {
+    type: String,
+    enum: ['halted','placed'],
+    required: true,
+  }
 }, {timestamps: false});
 
 const PurchaseOrder = mongoose.model('purchaseorders', PurchaseOrderSchema);

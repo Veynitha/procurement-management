@@ -3,27 +3,29 @@ const PurchaseOrder = require('../models/purchaseOrderModel');
 exports.createPurchaseOrder = async (req, res) => {
   try {
     const {
-      purchaseOrderReference,
-      companyDetails,
-      supplierDetails,
-      createdAt,
+      requestReference,
+      createdBy,
+      approvedBy,
+      supplierName,
+      companyName,
+      deliveryDate,
       deliveryAddress,
-      requiredDate,
-      siteDetails,
       total,
       items,
+      status
     } = req.body;
 
     const newPurchaseOrder = PurchaseOrder({
-        purchaseOrderReference,
-        companyDetails,
-        supplierDetails,
-        createdAt,
-        deliveryAddress,
-        requiredDate,
-        siteDetails,
-        total,
-        items,
+      requestReference,
+      createdBy,
+      approvedBy,
+      supplierName,
+      companyName,
+      deliveryDate,
+      deliveryAddress,
+      total,
+      items,
+      status
     });
 
     const savedPurchaseOrder = await newPurchaseOrder.save();
