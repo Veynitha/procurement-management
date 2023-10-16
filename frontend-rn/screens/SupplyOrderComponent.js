@@ -13,7 +13,7 @@ const id = "652bc9b2f6e4f7f79589966f"
 
   const fetchSupplyOrder = async () => {
     try {
-      const response = await fetch(`http://192.168.1.13:8000/api/get-supply-order-by-id/${id}`);
+      const response = await fetch(`http://192.168.1.13:3018/api/get-supply-order-by-id/${id}`);
       const data = await response.json();
       setSupplyOrder(data);
     } catch (error) {

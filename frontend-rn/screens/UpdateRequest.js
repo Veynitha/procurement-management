@@ -11,7 +11,7 @@ const UpdateRequest = ({ route, navigation }) => {
 
   useEffect(() => {
     // Fetch request details based on requestId
-    axios.get(`http://192.168.1.2:3018/api/request/${requestId}`)
+    axios.get(`http://192.168.1.13:3018/api/request/${requestId}`)
       .then((response) => {
         const { name, supplierName, deliveryDate, address } = response.data;
         // Set state variables with fetched data
@@ -35,7 +35,7 @@ const UpdateRequest = ({ route, navigation }) => {
     };
 
     axios
-      .put(`http://192.168.1.2:3018/api/request/${_id}`, requestData)
+      .put(`http://192.168.1.13:3018/api/request/${_id}`, requestData)
       .then((response) => {
         console.log(response);
         Alert.alert('Request updated successfully');

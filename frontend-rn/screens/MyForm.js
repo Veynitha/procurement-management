@@ -12,7 +12,7 @@ const MyForm = () => {
 
   const handleSubmit = async () => {
     try {
-      const response = await fetch('http://192.168.1.13:8000/api/delivery', {
+      const response = await fetch('http://192.168.1.13:3018/api/delivery', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -17,7 +17,7 @@ const DeliveryNotesPage = () => {
 
   const fetchDeliveryNotes = async () => {
     try {
-      const response = await fetch('http://192.168.1.13:8000/api/alldeliverynotes');
+      const response = await fetch('http://192.168.1.13:3018/api/alldeliverynotes');
       const data = await response.json();
       setDeliveryNotes(data);
     } catch (error) {
@@ -27,7 +27,7 @@ const DeliveryNotesPage = () => {
 
   const handleUpdateStatus = async (id) => {
     try {
-      const response = await axios.put(`http://192.168.1.13:8000/api/updateDilivery/${id}`, {
+      const response = await axios.put(`http://192.168.1.13:3018/api/updateDilivery/${id}`, {
         deliveryANStatus: deliveryANStatus,
         // supplierOR: suppid,
         // dcount: supplyOrder.deliverCount,
@@ -43,7 +43,7 @@ const DeliveryNotesPage = () => {
   
   const fetchSupplyOrder = async (id) => {
     try {
-      const response = await fetch(`http://192.168.1.13:8000/api/get-supply-order-by-id/${id}`);
+      const response = await fetch(`http://192.168.1.13:3018/api/get-supply-order-by-id/${id}`);
       const data = await response.json();
       setSupplyOrder(data);
     } catch (error) {
@@ -53,7 +53,7 @@ const DeliveryNotesPage = () => {
 
   const incrementDeliveryCount = async () => {
     try {
-      const response = await axios.put(`http://192.168.1.13:8000/api/increment-delivery-count`, {
+      const response = await axios.put(`http://192.168.1.13:3018/api/increment-delivery-count`, {
         id: suppid, 
         deliverCount: supplyOrder.deliverCount, 
         itemCount: supplyOrder.itemCount

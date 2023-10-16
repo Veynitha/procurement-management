@@ -31,7 +31,7 @@ const ALLrequest = () => {
 
   useEffect(() => {
     // Fetch requests data from the backend API
-    axios.get('http://192.168.1.2:3018/api/request')
+    axios.get('http://192.168.1.13:3018/api/request')
       .then((response) => {
         setRequests(response.data);
         setFilteredRequests(response.data); 
@@ -55,7 +55,7 @@ const ALLrequest = () => {
   };
 
   const handleDelete = (_id) => {
-    axios.delete(`http://192.168.1.2:3018/api/request/${_id}`)
+    axios.delete(`http://192.168.1.13:3018/api/request/${_id}`)
       .then((response) => {
         setRequests(requests.filter(request => request.requestId !== _id));
         Alert.alert('Request deleted successfully');
@@ -68,7 +68,7 @@ const ALLrequest = () => {
   };
 
   const handleUpdate = (_id) => {
-    axios.put(`http://192.168.1.2:3018/api/request/${_id}`, updateData, {
+    axios.put(`http://192.168.1.13:3018/api/request/${_id}`, updateData, {
       headers: {
         'Content-Type': 'application/json',
       }
