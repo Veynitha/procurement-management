@@ -9,6 +9,7 @@ import Invoice from './Screen/Invoices';
 import ViewInvoiceOrder from './components/ViewInvoiceOrder';
 import SupplyOrders from './Screen/SupplyOrders';
 import SupplyOrder from './components/ViewSupplyOrder';
+import MyForm from './Screen/MyForm';
 
 
 //Components
@@ -27,6 +28,7 @@ const App = () => {
           <Route path='/invoices/:id' element={<ViewInvoiceOrder />}></Route>
           <Route path='/requests' element={<GetAllRqs />}></Route>
           <Route path='/supplyOrders' element={<SupplyOrders />}></Route>
+          <Route path='/myform' element={<MyForm />}></Route>
           <Route path='/supplyOrder/:id' element={<SupplyOrder />}></Route>
         </Routes>
       </BrowserRouter>
