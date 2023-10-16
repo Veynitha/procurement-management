@@ -10,6 +10,7 @@ const ViewInvoiceOrder = () => {
     const [DueAmount, setDueAmount] = useState("");
     const [OrderReference, setOrderReference] = useState("");
     const [POReference, setPOReference] = useState("");
+    const [items, setItems] = useState([]);
 
     useEffect(() => {
         try {
@@ -18,6 +19,7 @@ const ViewInvoiceOrder = () => {
                 setDueAmount(result.data.DueAmount);
                 setOrderReference(result.data.OrderReference)
                 setPOReference(result.data.POReference)
+                setItems([...items, ...result.data.items])
             })
         } catch (error) {
 
@@ -31,6 +33,13 @@ const ViewInvoiceOrder = () => {
             <p>{POReference}</p>
             <p>{DueAmount}</p>
             <p>{InvoiceDate}</p>
+            <ul>
+                {items.map((item) => (
+                    <li key={item._id}>
+                        Name: {item.itemName}, Price: {item.agreedPrice}, Quantity: {item.quantity}
+                    </li>
+                ))}
+            </ul>
             <button>Generate Receipt</button>
         </div>
     )
