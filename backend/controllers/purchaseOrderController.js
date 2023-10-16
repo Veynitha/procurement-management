@@ -15,6 +15,8 @@ exports.createPurchaseOrder = async (req, res) => {
       status
     } = req.body;
 
+    const status = 'Placed';
+
     const newPurchaseOrder = PurchaseOrder({
       requestReference,
       createdBy,

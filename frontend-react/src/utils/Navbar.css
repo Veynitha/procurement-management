@@ -1,0 +1,43 @@
+.left-sidebar {
+    position: absolute;
+    left: 1.56%;
+    right: 81.82%;
+    top: 11.52%;
+    bottom: 3.19%;
+    background: #3C2E00;
+    box-shadow: 0px 0px 6px rgba(84, 84, 84, 0.25);
+    border-radius: 20px;
+}
+
+/* Remove default list styles */
+.left-sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.side-bar-link {
+    width: 100%;
+    height: 30px;
+    display: block;
+    font-family: 'Roboto', sans-serif; /* Use the "Roboto" font and provide a fallback sans-serif font */
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px; /* Increase the font size */
+    line-height: 28px; /* Increase the line height for better readability */
+    color: #FFFFFF;
+    text-decoration: none;
+    margin: 5px 0;
+}
+
+.side-bar-link:hover {
+    background-color: #555;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.Links-outer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Change "left" to "flex-start" for better alignment */
+    margin-left: 20px;
+}

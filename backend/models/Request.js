@@ -27,7 +27,7 @@ const requestSchema = new Schema({
   },
   approvedBy: {
     type: String,
-    required: true,
+    required: false,
   },
   supplierName: {
     type: String,

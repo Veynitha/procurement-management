@@ -1,8 +1,10 @@
+
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Update_Rq = () => {
+
   const { id } = useParams();
   const [requests, setRequests] = useState({});
   const [requestId, setRqID] = useState();
@@ -16,10 +18,12 @@ const Update_Rq = () => {
   const [total, setTotal] = useState();
   const [status, setStatus] = useState();
 
+
   const nav = useNavigate();
   console.log("rq", requests);
 
   useEffect(() => {
+
     axios
       .get("http://localhost:8000/api/get-request/" + id)
       .then((result) => {
@@ -35,6 +39,7 @@ const Update_Rq = () => {
         setAgreedPrice(result.data.agreedPrice);
         setTotal(result.data.total);
         setStatus(result.data.status);
+
       })
       .catch((err) => console.error(err));
   }, [id]);
@@ -42,9 +47,11 @@ const Update_Rq = () => {
   const Update = (e) => {
     e.preventDefault();
     axios
+
       .put("http://localhost:8000/api/updateRequest/" + id, {
         newStatus: status,
       })
+
       .then((result) => {
         console.log(result);
         nav(`/rq2po/${id}`);
@@ -56,6 +63,7 @@ const Update_Rq = () => {
     <div className="d-flex vh-100 bg-primary justify-content-center align-items-center">
       <div className="w-100 bg-white rounded p-3">
         <form onSubmit={Update}>
+
           <h1>Approve Requisition</h1>
 
           <div className="form-group">
@@ -101,6 +109,7 @@ const Update_Rq = () => {
               <option value="approved">Approve</option>
               <option value="reject">Reject</option>
               <option value="pending">Pending</option>
+
             </select>
           </div>
 

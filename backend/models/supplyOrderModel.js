@@ -16,11 +16,6 @@ const itemSchema = new mongoose.Schema({
   });
 
 const SupplyOrderSchema = new mongoose.Schema({ 
-    orderReference: {
-        type: String,
-        required: true,
-        unique: true
-    },
     purchaseOrderReference: {
         type: String,
         required: true,
@@ -34,6 +29,10 @@ const SupplyOrderSchema = new mongoose.Schema({
         type: String,
         required: true,
       },
+    requiredDate: {
+        type: Date,
+        required: true,
+    },
     companyDetails: {
         type: String,
         required: true,
