@@ -25,6 +25,7 @@ app.use("/api", require("./routes/requestRoutes"));
 app.use("/api", require("./routes/supplyOrderRoutes"));
 app.use("/api", require("./routes/purchaseOrderRoutes"));
 app.use("/api", require("./routes/invoiceRoutes"));
+app.use("/api", require("./routes/deliveryRoutes"));
 
 connectDB();
 
