@@ -11,7 +11,7 @@ const MyForm = () => {
 
   const handleSubmit = async () => {
     try {
-      const response = await fetch('http://192.168.1.13:3018/api/delivery', {
+      const response = await fetch('http://localhost:3018/api/delivery', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -139,6 +139,6 @@ const styles = {
     textTransform: 'uppercase',
     transition: 'background-color 0.3s',
   },
-  };
+};
 
 export default MyForm;
