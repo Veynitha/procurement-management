@@ -5,7 +5,6 @@ const Invoice = require('../models/invoiceModel');
 exports.createSupplyOrder = async (req, res) => {
   try {
     const {
-      orderReference,
       purchaseOrderReference,
       createdAt,
       deliveryAddress,
@@ -20,7 +19,6 @@ exports.createSupplyOrder = async (req, res) => {
     const orderStatus = 'pending';
 
     const newSupplyOrder = SupplyOrder({
-      orderReference,
       purchaseOrderReference,
       createdAt,
       deliveryAddress,
@@ -45,7 +43,7 @@ exports.createSupplyOrder = async (req, res) => {
 exports.getAllSupplyOrders = async (req, res) => {
   try {
     const supplyOrders = await SupplyOrder.find();
-    res.json(supplyOrders);
+    res.status(200).json(supplyOrders);
   } catch (error) {
     res.status(500).json({ error: 'An error occurred while fetching supply orders' });
   }
@@ -66,17 +64,13 @@ exports.incrementDeliveryCount = async (req, res) => {
         return res.json(newSupplyOrder);
 
     } catch (error) {
-        return res.json(error);
+      res.status(400).json({message: "Something went wrong"});
     }
 };
 
 exports.addItemToSupplyOrder = async (req, res) => {
     try {
         const {id, item, itemCount, total} = req.body;
-        console.log(id)
-        console.log(itemCount)
-        console.log(total)
-        console.log(item)
         const newSupplyOrder = await SupplyOrder.findByIdAndUpdate(id, {
             $push: { items: item }, // Add the item to the items array
             $inc: { itemCount: 1 }, // Increment the itemCount field by 1
@@ -85,9 +79,9 @@ exports.addItemToSupplyOrder = async (req, res) => {
           { new: true } 
           )// Return the updated document)
         console.log(newSupplyOrder)
-        return res.json("HEllo WOrld");
+        return res.status(200).json("Item Added Successfully");
     } catch (error) {
-        return res.json(error);
+        res.status(400).json(error);
     }
 };
 

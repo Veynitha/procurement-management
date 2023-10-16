@@ -16,11 +16,6 @@ const itemSchema = new mongoose.Schema({
   });
 
 const SupplyOrderSchema = new mongoose.Schema({ 
-    orderReference: {
-        type: String,
-        required: true,
-        unique: true
-    },
     purchaseOrderReference: {
         type: String,
         required: true,
