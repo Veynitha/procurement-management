@@ -1,6 +1,5 @@
 import React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Navbar from './components/NavBar'
 //Screens 
 import GetAllRqs from './Screen/Get_all_rqs';
 import SetStatus from './Screen/Set_rq_status';
@@ -16,9 +15,7 @@ import SupplyOrder from './components/ViewSupplyOrder';
 const App = () => {
   return (
     <div>
-
       <BrowserRouter>
-        {/* <Navbar /> */}
         <Routes>
           <Route path='/' element={<Invoice />}></Route>
           <Route path='/update/:id' element={<SetStatus />}></Route>

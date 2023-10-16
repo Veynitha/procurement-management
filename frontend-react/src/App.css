@@ -40,3 +40,15 @@
 .read-the-docs {
   color: #888;
 }
+
+.nav-bar {
+  width: 250px; /* Adjust the width as needed */
+  background-color: #333; /* Background color for the sidebar */
+  color: #fff; /* Text color for the sidebar */
+  padding: 20px;
+}
+
+.content-body {
+  flex: 1; /* Allow the content to take up remaining space */
+  padding: 5rem;
+}
