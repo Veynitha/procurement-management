@@ -40,6 +40,30 @@ exports.getAllRequests = async (req, res) => {
   }
 }
 
+exports.updateRequestStatus = async (req, res) => {
+  try {
+    const { newStatus , approvedBy} = req.body; 
+
+    const id = req.params.id; 
+
+    const updatedRequest = await RequestModel.findByIdAndUpdate(
+      id,
+      { status: newStatus },
+      { approvedBy: approvedBy},
+      { new: true }
+    );
+
+    if (!updatedRequest) {
+      return res.status(404).json({ message: 'Request not found' });
+    }
+
+    return res.json({ message: 'Request status updated successfully', updatedRequest });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
 
 
 
@@ -104,19 +128,20 @@ exports.updateRequest = async (req, res) => {
   }
 };
 
-exports.getRequestById = async (req, res) => {
+exports.getRequest =async (req, res) => {
+  const { id } = req.params;
+
   try {
-    const requestId = req.params.requestId;
-    const request = await RequestModel.findOne({ requestId });
+    const request = await RequestModel.findById({_id:id });
 
     if (!request) {
-      return res.status(404).json({ message: "Request not found" });
+      return res.status(404).json({ error: 'Request not found' });
     }
 
-    res.status(200).json(request);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: "Internal server error" });
+    res.json(request);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Server error' });
   }
 };
 
