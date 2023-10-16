@@ -12,6 +12,7 @@ exports.createPurchaseOrder = async (req, res) => {
       deliveryAddress,
       total,
       items,
+      status
     } = req.body;
 
     const status = 'Placed';
