@@ -13,8 +13,8 @@ const ViewSupplyOrder = () => {
     const [companyDetails, setCompanyDetails] = useState("")
     const [total, setTotal] = useState("")
     const [orderStatus, setOrderStatus] = useState("")
-    const [items, setItems] = useState()
-    const [status, setStatus] = useState()
+    const [items, setItems] = useState([])
+    const [status, setStatus] = useState("")
 
 
     useEffect(() => {
@@ -29,9 +29,10 @@ const ViewSupplyOrder = () => {
                     setCompanyDetails(result.data.companyDetails)
                     setTotal(result.data.total)
                     setOrderStatus(result.data.orderStatus)
-                    setItems(result.data.items)
-                    console.log(orderReference)
-                    console.log(total)
+                    setItems([...items, ...result.data.items])
+                    console.log(items)
+                    console.log(result.data.items)
+                    console.log(result.data.total)
                 })
         } catch (error) {
             console.log(error);
@@ -48,6 +49,14 @@ const ViewSupplyOrder = () => {
             <p>{requiredDate}</p>
             <p>{companyDetails}</p>
             <p>{total}</p>
+            <h2>Items</h2>
+            <ul>
+                {items.map((item) => (
+                    <li key={item._id}>
+                        Name: {item.itemName}, Price: {item.agreedPrice}, Quantity: {item.quantity}
+                    </li>
+                ))}
+            </ul>
 
         </div>
     )
