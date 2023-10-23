@@ -27,41 +27,46 @@ const Get_all_POS = () => {
       </div>
       <div className="content-body">
         <div className="d-flex vh-100 bg-light justify-content-center align-items-center">
-          <div className="w-50 bg-white rounded p-3">
-            <h1>Purchase Orders</h1>
-            <table className="table-bordered">
-              <thead>
-                <tr>
-                  <th>Request ID</th>
-                  <th>Approved By</th>
-                  <th>Created By</th>
-                  <th>Supplier Name</th>
-                  <th>Company Name</th>
-                  <th>Delivery Date </th>
-                  <th>Delivery Address </th>
-                  <th>Total amount </th>
-                  <th>Status</th>
-
-                </tr>
-              </thead>
-              <tbody>
-                {purchaseOrders.map((purchaseOrder) => {
-                  return purchaseOrder.items.map((item) => (
-                    <tr key={`${purchaseOrder._id}`}>
-                      <td>{purchaseOrder.requestReference}</td>
-                      <td>{purchaseOrder.approvedBy}</td>
-                      <td>{purchaseOrder.createdBy}</td>
-                      <td>{purchaseOrder.supplierName}</td>
-                      <td>{purchaseOrder.companyName}</td>
-                      <td>{purchaseOrder.deliveryDate.slice(0, 10)}</td>
-                      <td>{purchaseOrder.deliveryAddress}</td>
-                      <td>{purchaseOrder.total}</td>
-                      <td>{purchaseOrder.status}</td>
-                    </tr>
-                  ));
-                })}
-              </tbody>
-            </table>
+          <div className="w-80 bg-white rounded p-3">
+            <div className='headers'>
+              <h1>Purchase Orders</h1>
+            </div>
+            <div className="table-responsive">
+              <table className="table table-bordered">
+                <thead className="thead-dark">
+                  <tr>
+                    <th>Request ID</th>
+                    <th>Company Name</th>
+                    <th>Approved By</th>
+                    <th>Created By</th>
+                    <th>Delivery Date </th>
+                    <th>Delivery Address </th>
+                    <th>Total amount </th>
+                    <th>Status</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {purchaseOrders.map((purchaseOrder) => {
+                    return purchaseOrder.items.map((item) => (
+                      <tr key={`${purchaseOrder._id}`}>
+                        <td>{purchaseOrder.requestReference}</td>
+                        <td>{purchaseOrder.companyName}</td>
+                        <td>{purchaseOrder.approvedBy}</td>
+                        <td>{purchaseOrder.createdBy}</td>
+                        <td>{purchaseOrder.deliveryDate.slice(0, 10)}</td>
+                        <td>{purchaseOrder.deliveryAddress}</td>
+                        <td>{purchaseOrder.total}</td>
+                        <td>{purchaseOrder.status}</td>
+                        <td>
+                          <Link to={`/purchaseOrder/${purchaseOrder._id}`} className="btn btn-success">View Order</Link>
+                        </td>
+                      </tr>
+                    ));
+                  })}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>

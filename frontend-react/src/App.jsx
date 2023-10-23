@@ -10,6 +10,7 @@ import ViewInvoiceOrder from './components/ViewInvoiceOrder';
 import SupplyOrders from './Screen/SupplyOrders';
 import SupplyOrder from './components/ViewSupplyOrder';
 import MyForm from './Screen/MyForm';
+import ViewPurchaseOrder from './components/ViewPurchaseOrder';
 
 
 //Components
@@ -22,7 +23,7 @@ const App = () => {
         <Routes>
           <Route path='/' element={<Invoice />}></Route>
           <Route path='/update/:id' element={<SetStatus />}></Route>
-          <Route path='/rq2po/:id' element={<RQ2PO/>}></Route>
+          <Route path='/rq2po/:id' element={<RQ2PO />}></Route>
           <Route path='/po' element={<PurchesOrders />}></Route>
           <Route path='/invoices' element={<Invoice />}></Route>
           <Route path='/invoices/:id' element={<ViewInvoiceOrder />}></Route>
@@ -30,6 +31,7 @@ const App = () => {
           <Route path='/supplyOrders' element={<SupplyOrders />}></Route>
           <Route path='/myform' element={<MyForm />}></Route>
           <Route path='/supplyOrder/:id' element={<SupplyOrder />}></Route>
+          <Route path='/purchaseOrder/:id' element={<ViewPurchaseOrder />}></Route>
         </Routes>
       </BrowserRouter>
     </div>

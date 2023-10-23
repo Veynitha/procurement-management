@@ -24,10 +24,10 @@ exports.createPurchaseOrder = async (req, res) => {
       companyName,
       deliveryDate,
       deliveryAddress,
-      total,
       items,
+      total,
       status
-    });
+    });  
 
     const savedPurchaseOrder = await newPurchaseOrder.save();
     res.status(201).json(savedPurchaseOrder);
@@ -46,3 +46,36 @@ exports.getAllPurchaseOrders = async (req, res) => {
     res.status(500).json({ error: 'An error occurred while fetching supply orders' });
   }
 };
+
+exports.getPurchaseOrderById = async (req, res) => {
+  try {
+    const purchaseOrder = await PurchaseOrder.findById(req.params.id);
+    res.json(purchaseOrder);
+  } catch (error) {
+    res.status(500).json({ error: 'An error occurred while fetching purchase order' });
+  }
+}
+
+exports.acceptPurchaseOrder = async (req, res) => {
+  try {
+    const purchaseOrder = await PurchaseOrder.findById(req.params.id);
+    purchaseOrder.status = 'accepted';
+    purchaseOrder.save();
+    res.json(purchaseOrder);
+  } catch (error) {
+    res.status(500).json({ error: 'An error occurred while accepting purchase order' });
+  }
+}
+
+exports.rejectPurchaseOrder = async (req, res) => {
+  try {
+    const purchaseOrder = await PurchaseOrder.findById(req.params.id);
+    purchaseOrder.status = 'rejected';
+    purchaseOrder.save();
+    res.json(purchaseOrder);
+  } catch (error) {
+    res.status(500).json({ error: 'An error occurred while rejecting purchase order' });
+  }
+}
+
+
