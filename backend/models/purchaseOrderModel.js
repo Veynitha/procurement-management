@@ -54,7 +54,7 @@ const PurchaseOrderSchema = new mongoose.Schema({
   },
   status: {
     type: String,
-    enum: ['halted','placed'],
+    enum: ['halted','placed', 'accepted', 'rejected'],
     required: true,
   }
 }, {timestamps: false});

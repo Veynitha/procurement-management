@@ -4,41 +4,41 @@ import axios from "axios";
 import Navbar from '../components/NavBar';
 import '../utils/componentCss.css'
 
-const Req_PurchenOrder = () => {
+const Req_PurchaseOrder = () => {
   const { id } = useParams();
-  const [requestId, setRequestId] = useState();
-  const [name, setName] = useState();
-  const [approvedBy, setApprovedBy] = useState();
-  const [supplierName, setSupplier] = useState();
-  const [companyName, setCompany] = useState();
-  const [deliveryDate, setDeliveryDate] = useState();
-  const [address, setAddress] = useState();
-  const [itemName, setItemName] = useState();
-  const [quantity, setQuantity] = useState();
-  const [agreedPrice, setAgreedPrice] = useState();
-  const [total, setTotal] = useState();
-  const [status, setStatus] = useState();
+  const [requestId, setRequestId] = useState("");
+  const [name, setName] = useState("");
+  const [approvedBy, setApprovedBy] = useState("");
+  const [supplierName, setSupplier] = useState("");
+  const [companyName, setCompany] = useState("");
+  const [deliveryDate, setDeliveryDate] = useState("");
+  const [address, setAddress] = useState("");
+  const [itemName, setItemName] = useState("");
+  const [quantity, setQuantity] = useState("");
+  const [agreedPrice, setAgreedPrice] = useState("");
+  const [total, setTotal] = useState("");
+  const [status, setStatus] = useState("");
 
   const nav = useNavigate();
 
   useEffect(() => {
     axios
-      .get("http://localhost:3018/api/get-request/" + id)
+      .get(`http://localhost:3018/api/get-request/${id}`)
       .then((result) => {
-        console.log("data", result);
-        setRequestId(result.data.requestId);
-        setName(result.data.name);
-        setApprovedBy(result.data.approvedBy);
-        setSupplier(result.data.supplierName);
-        setCompany(result.data.companyName);
-        setDeliveryDate(result.data.deliveryDate);
-        setAddress(result.data.address);
-        setTotal(result.data.total);
-        setStatus(result.data.status);
+        console.log("data", result.data);
+        const data = result.data;
+        setRequestId(data.requestId);
+        setName(data.name);
+        setApprovedBy(data.approvedBy);
+        setSupplier(data.supplierName);
+        setCompany(data.companyName);
+        setDeliveryDate(data.deliveryDate);
+        setAddress(data.address);
+        setTotal(data.total);
+        setStatus(data.status);
 
-        const itemData = result.data.items;
-        if (Array.isArray(itemData) && itemData.length > 0) {
-          const firstItem = itemData[0];
+        if (Array.isArray(data.items) && data.items.length > 0) {
+          const firstItem = data.items[0];
           setItemName(firstItem.itemName);
           setQuantity(firstItem.quantity);
           setAgreedPrice(firstItem.agreedPrice);
@@ -47,7 +47,9 @@ const Req_PurchenOrder = () => {
       .catch((err) => console.error(err));
   }, [id]);
 
-  const Submit = (e) => {
+  console.log(id)
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const items = [
@@ -58,31 +60,31 @@ const Req_PurchenOrder = () => {
       },
     ];
 
-    axios
-      .post(
-        "http://localhost:3018/api/create-purchase-orders",
-        JSON.stringify({
-          requestReference: id,
-          createdBy: name,
-          approvedBy: approvedBy,
-          supplierName: supplierName,
-          companyName: companyName,
-          deliveryDate: deliveryDate,
-          deliveryAddress: address,
-          total: total,
-          items: items,
-          status: status,
-        }),
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      )
+    const request = {
+      requestReference: id,
+      createdBy: name,
+      approvedBy: approvedBy,
+      supplierName: supplierName,
+      companyName: companyName,
+      deliveryDate: deliveryDate,
+      deliveryAddress: address,
+      total: total,
+      items: items,
+    };
 
+    const purchaseOrder = await axios.post(
+      "http://localhost:3018/api/create-purchase-orders",
+      request,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    )
       .then((result) => {
         console.log("PO", result);
-        nav("/");
+        (result) ? alert("Purchase Order Created Successfully") : alert("Purchase Order Creation Failed");
+        nav("/po");
       })
       .catch((err) => console.log(err));
   };
@@ -94,9 +96,9 @@ const Req_PurchenOrder = () => {
       </div>
       <div className="content-body">
         <div className="d-flex vh-80 bg-light justify-content-center align-items-center">
-          <div className="w-50 bg-white rounded p-3" >
-            <h1>Crete Purchase Order</h1>
-            <form onSubmit={Submit}>
+          <div className="w-50 bg-white rounded p-3">
+            <h1>Create Purchase Order</h1>
+            <form onSubmit={handleSubmit}>
               <div className="form-group">
                 <label htmlFor="requestId">Request ID</label>
                 <input
@@ -104,7 +106,6 @@ const Req_PurchenOrder = () => {
                   className="form-control"
                   value={requestId}
                   readOnly
-                  onChange={(e) => setRequestId(e.target.value)}
                 />
               </div>
 
@@ -115,7 +116,6 @@ const Req_PurchenOrder = () => {
                   className="form-control"
                   value={name}
                   readOnly
-                  onChange={(e) => setName(e.target.value)}
                 />
               </div>
 
@@ -123,51 +123,47 @@ const Req_PurchenOrder = () => {
                 <label htmlFor="approvedBy">Approved by</label>
                 <input
                   type="text"
-
                   className="form-control"
                   placeholder="Enter Approved Manager's Name"
+                  value={approvedBy}
                   onChange={(e) => setApprovedBy(e.target.value)}
                 />
               </div>
 
               <div className="form-group">
-                <label htmlFor="address"> Supplier Name</label>
+                <label htmlFor="supplierName">Supplier Name</label>
                 <input
                   type="text"
-                  readOnly
                   className="form-control"
                   value={supplierName}
-                  onChange={(e) => setRequestId(e.target.value)}
+                  readOnly
                 />
               </div>
               <div className="form-group">
                 <label htmlFor="companyName">Company name</label>
                 <input
                   type="text"
-                  readOnly
                   className="form-control"
                   value={companyName}
-                  onChange={(e) => setSupplier(e.target.value)}
+                  readOnly
                 />
               </div>
               <div className="form-group">
                 <label htmlFor="deliveryDate">Delivery Date</label>
                 <input
                   type="text"
-                  readOnly
                   className="form-control"
                   value={deliveryDate}
-                  onChange={(e) => setDeliveryDate(e.target.value)}
+                  readOnly
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="address">Deliver Address</label>
+                <label htmlFor="address">Delivery Address</label>
                 <input
                   type="text"
-                  readOnly
                   className="form-control"
                   value={address}
-                  onChange={(e) => setAddress(e.target.value)}
+                  readOnly
                 />
               </div>
 
@@ -176,9 +172,8 @@ const Req_PurchenOrder = () => {
                 <input
                   type="text"
                   className="form-control"
-                  readOnly
                   value={total}
-                  onChange={(e) => setTotal(e.target.value)}
+                  readOnly
                 />
               </div>
               <div className="form-group">
@@ -186,23 +181,20 @@ const Req_PurchenOrder = () => {
                 <input
                   type="text"
                   className="form-control"
-                  readOnly
                   value={status}
-                  onChange={(e) => setStatus(e.target.value)}
+                  readOnly
                 />
               </div>
 
-              <Link to={"/po"} className="btn btn-success">
-                {" "}
+              <button type="submit" className="btn btn-success">
                 Submit
-              </Link>
+              </button>
             </form>
           </div>
         </div>
       </div>
     </div>
-
   );
 };
 
-export default Req_PurchenOrder;
+export default Req_PurchaseOrder;

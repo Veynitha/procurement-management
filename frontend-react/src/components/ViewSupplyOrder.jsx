@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
 import Navbar from './NavBar';
@@ -43,7 +43,9 @@ const ViewSupplyOrder = () => {
                 <Navbar />
             </div>
             <div className='content-body'>
-                <h1>Supply Order</h1>
+                <div className='headers'>
+                    <h1>Supply Order</h1>
+                </div>
                 <p><strong>Order Reference:</strong> {orderReference}</p>
                 <p><strong>Purchase Order Reference:</strong> {purchaseOrderReference}</p>
                 <p><strong>Created At:</strong> {createdAt}</p>
@@ -72,7 +74,11 @@ const ViewSupplyOrder = () => {
                         ))}
                     </tbody>
                 </table>
+                <td>
+                    <Link to={'/'} className="btn btn-primary">Create Delivery</Link>
+                </td>
             </div>
+
         </div>
     );
 }
