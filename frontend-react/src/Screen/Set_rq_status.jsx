@@ -46,8 +46,13 @@ const Update_Rq = () => {
       .put("http://localhost:3018/api/updateRequest/" + id, {
         newStatus: status,
       })
-      .then((result) => {
-        nav(`/rq2po/${id}`);
+      .then((result) => { 
+        if(status==='approved'){
+          nav(`/rq2po/${id}`);
+
+        } else{
+          nav(`/requests`)
+        }
       })
       .catch((err) => console.error(err));
   };
