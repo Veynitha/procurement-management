@@ -9,6 +9,7 @@ const Req_PurchaseOrder = () => {
   const [requestId, setRequestId] = useState("");
   const [name, setName] = useState("");
   const [approvedBy, setApprovedBy] = useState("");
+  const [approvedByError, setApprovedByError] = useState(""); 
   const [supplierName, setSupplier] = useState("");
   const [companyName, setCompany] = useState("");
   const [deliveryDate, setDeliveryDate] = useState("");
@@ -51,6 +52,11 @@ const Req_PurchaseOrder = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!approvedBy) {
+      setApprovedByError("Approved by is required");
+      return;
+    }
 
     const items = [
       {
@@ -126,8 +132,14 @@ const Req_PurchaseOrder = () => {
                   className="form-control"
                   placeholder="Enter Approved Manager's Name"
                   value={approvedBy}
-                  onChange={(e) => setApprovedBy(e.target.value)}
+                  onChange={(e) => {
+                    setApprovedBy(e.target.value);
+                    setApprovedByError(""); // Clear the error message on input change
+                  }}
                 />
+                {approvedByError && (
+                  <p className="text-danger">{approvedByError}</p>
+                )}
               </div>
 
               <div className="form-group">
