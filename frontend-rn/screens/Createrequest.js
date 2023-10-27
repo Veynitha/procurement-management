@@ -52,7 +52,7 @@ const Createrequest = () => {
         setDeliveryDate('');
         setAddress('');
         setItems([{ itemName: '', quantity: '', agreedPrice: '' }]);
-        navigation.replace("ALLrequest");
+        navigation.navigate("ALLrequest");
       })
       .catch((error) => {
         console.error('Error submitting request', error);
