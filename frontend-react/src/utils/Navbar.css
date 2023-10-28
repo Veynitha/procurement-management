@@ -38,6 +38,8 @@
 .Links-outer {
     display: flex;
     flex-direction: column;
-    align-items: flex-start; /* Change "left" to "flex-start" for better alignment */
-    margin-left: 20px;
+    margin: 10%; /* Spread links evenly vertically */
+    align-items: flex-start; /* Adjust alignment as needed */
+    height: 100%; /* Ensure the container takes the full height */
+    padding: 20px 0;
 }

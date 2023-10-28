@@ -7,18 +7,23 @@ import Navbar from '../components/NavBar';
 
 const SupplyOrders = () => {
     const [requests, setRequests] = useState([]);
+    const [filterStatus, setFilterStatus] = useState(''); // Initialize filterStatus
 
     useEffect(() => {
         axios
             .get("http://localhost:3018/api/get-supply-orders")
             .then(response => {
                 setRequests(response.data);
-                console.log(requests)
             })
             .catch((error) => {
                 console.error("Error fetching data:", error);
             });
     }, []);
+
+    // Filter function to get filtered supply orders
+    const filteredOrders = requests.filter(request => {
+        return filterStatus === '' || request.orderStatus === filterStatus;
+    });
 
     return (
         <div className="container">
@@ -29,6 +34,17 @@ const SupplyOrders = () => {
                 <div className="w-80 bg-white rounded p-3">
                     <div className='headers'>
                         <h2>Supply Orders</h2>
+                        <div>
+                            <label>Filter by Status: </label>
+                            <select
+                                value={filterStatus}
+                                onChange={(e) => setFilterStatus(e.target.value)}
+                            >
+                                <option value="">All</option>
+                                <option value="pending">Pending</option>
+                                <option value="delivered">Delivered</option>
+                            </select>
+                        </div>
                     </div>
                     <div className="table-responsive">
                         <table className="table table-bordered">
@@ -45,7 +61,7 @@ const SupplyOrders = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {requests.map(request => (
+                                {filteredOrders.map(request => (
                                     <tr key={request.id}>
                                         <td>{request.purchaseOrderReference}</td>
                                         <td>{request.createdAt.slice(0, 10)}</td>

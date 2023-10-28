@@ -7,18 +7,27 @@ import Navbar from '../components/NavBar';
 
 const Invoices = () => {
     const [requests, setRequests] = useState([]);
+    const [searchQuery, setSearchQuery] = useState('');
 
     useEffect(() => {
         axios
             .get("http://localhost:3018/api/get-invoices")
             .then(response => {
                 setRequests(response.data);
-                console.log(requests)
             })
             .catch((error) => {
                 console.error("Error fetching data:", error);
             });
     }, []);
+
+    // Filter function to search invoices by PO Reference or Order Reference
+    const filteredInvoices = requests.filter(request => {
+        const searchString = searchQuery.toLowerCase();
+        return (
+            request.POReference.toLowerCase().includes(searchString) ||
+            request.OrderReference.toLowerCase().includes(searchString)
+        );
+    });
 
     return (
         <div className="container">
@@ -27,6 +36,14 @@ const Invoices = () => {
             </div>
             <div className="content-body">
                 <h1>Invoice Page</h1>
+                <div className="search-bar">
+                    <input
+                        type="text"
+                        placeholder="Search by PO Reference or Order Reference"
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                    />
+                </div>
                 <div className="table-responsive">
                     <table className="table table-bordered">
                         <thead className="thead-dark">
@@ -39,7 +56,7 @@ const Invoices = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {requests.map(request => (
+                            {filteredInvoices.map(request => (
                                 <tr key={request.id}>
                                     <td>{request.POReference}</td>
                                     <td>{request.OrderReference}</td>
