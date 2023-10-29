@@ -22,6 +22,7 @@ exports.createDelivery = async (req, res) => {
       deliveryStatus: "pending"
     });
     const savedDelivery = await newDelivery.save();
+    console.log(savedDelivery);
 
     
 
@@ -38,6 +39,7 @@ exports.createDelivery = async (req, res) => {
       });
   
     const savedDeliveryAdviceNote = await newDeliveryAdviceNote.save();
+    console.log(savedDeliveryAdviceNote);
 
     res.status(201).json(savedDelivery );
   } catch (error) {
@@ -69,6 +71,7 @@ exports.updateDeliveriesStatus = async (req, res) => {
     const { deliveryANStatus } = req.body;
 
     const id = req.params.id;
+    
 
     const updatedDeliverie = await DeliveryAdviceNote.findByIdAndUpdate(
       id,
@@ -85,8 +88,20 @@ exports.updateDeliveriesStatus = async (req, res) => {
     //   { new: true } // To return the updated document
     // );
 
+    const updatedDeliverienot = await Delivery.findByIdAndUpdate(
+      updatedDeliverie.deleveryid,
+      { deliveryStatus: deliveryANStatus }, // Using the value from the request body
+      { new: true } // To return the updated document
+    );
+    // console.log("did --", updatedDeliverie.deleveryid)
+    // console.log("--", updatedDeliverie)
+    // console.log("--", updatedDeliverienot)
+    if (!updatedDeliverienot) {
+      return res.status(404).json({ message: 'Delivery not found' });
+    }
 
-    return res.json({ message: 'Delivery advice note status updated successfully', updatedDeliverie });
+
+    return res.json({ message: 'Delivery advice note status updated successfully', updatedDeliverie,updatedDeliverienot });
   } catch (error) {
     console.error(error);
     return res.status(500).json({ message: 'Internal server error' });

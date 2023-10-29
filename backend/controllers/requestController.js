@@ -31,12 +31,12 @@ exports.createRequest = async (req, res) => {
       status,
     });
 
-    const gg = await request.save();
-    console.log(gg)
+    const result = await request.save();
+    console.log("Create order success:", result)
 
     res.status(201).json(request);
   } catch (error) {
-    //console.log("Error entering request", error);
+    console.log("Error entering request: handling success "); //, error
     res.status(400).json({ error: error.message });
   }
 };
@@ -45,8 +45,10 @@ exports.getAllRequests = async (req, res) => {
   try {
     const requests = await RequestModel.find();
     res.status(200).json(requests);
+    console.log("get All order requests success",requests);
   } catch (error) {
     res.status(500).json({ error: error.message });
+    console.log("Error getting all requests: handle success ");
   }
 }
 
@@ -90,11 +92,14 @@ exports.deleteRequest = async (req, res) => {
     }
 
     // Request deleted successfully, send a success response
+    
     res.status(200).json({ message: 'Request deleted successfully' });
+    console.log("delete order request success:");
   } catch (error) {
     // Handle errors, send a 500 response with the error message
-    console.error('Error deleting request', error);
+    //console.error('Error deleting request', error);
     res.status(500).json({ error: 'Internal Server Error' });
+    console.log("Error deleting  request: handle success ");
   }
 };
 
@@ -147,10 +152,13 @@ exports.getRequest =async (req, res) => {
     if (!request) {
       return res.status(404).json({ error: 'Request not found' });
     }
-
-    res.json(request);
+   
+    res.status(200).json(request);
+    console.log("get order success:",request);
+    
   } catch (error) {
-    console.error(error);
+    //console.error(error);
     res.status(500).json({ error: 'Server error' });
+    console.log("Error getting single requests: handle success ");
   }
 };

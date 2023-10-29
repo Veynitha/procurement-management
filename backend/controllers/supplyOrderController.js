@@ -86,34 +86,30 @@ exports.addItemToSupplyOrder = async (req, res) => {
 };
 
 exports.removeItemFromSupplyOrder = async (req, res) => {
-    try {
-      const { id, itemIndex } = req.body;
-      const supplyOrder = await SupplyOrder.findById(id);
-  
-      if (!supplyOrder) {
-        return res.status(404).json({ error: 'Supply order not found' });
-      }
-  
-      // Check if the itemIndex is valid
-      if (itemIndex < 0 || itemIndex >= supplyOrder.items.length) {
-        return res.status(400).json({ error: 'Invalid item index' });
-      }
-  
-      // Remove the item at the specified index
-      supplyOrder.items.splice(itemIndex, 1);
-  
-      // Update itemCount and total fields
-      supplyOrder.itemCount -= 1;
-      supplyOrder.total -= supplyOrder.items[itemIndex].agreedPrice * supplyOrder.items[itemIndex].quantity;
-  
-      // Save the updated supply order
-      const updatedSupplyOrder = await supplyOrder.save().catch((err) => {console.log(err)});
-  
-      return res.json(updatedSupplyOrder);
-    } catch (error) {
-      return res.status(500).json({ error: 'Internal server error' });
+  try {
+    const { id, itemId, tot } = req.body;
+    const supplyOrder = await SupplyOrder.findById(id);
+
+    if (!supplyOrder) {
+      return res.status(404).json({ error: 'Supply order not found' });
     }
-  };
+
+    // Remove the item with the specified itemId
+    supplyOrder.items = supplyOrder.items.filter((item) => item._id.toString() !== itemId);
+
+    // Update itemCount and total fields
+    supplyOrder.itemCount -= 1;
+    supplyOrder.total -= tot;
+
+    // Save the updated supply order
+    const updatedSupplyOrder = await supplyOrder.save();
+
+    return res.json(updatedSupplyOrder);
+  } catch (error) {
+    return res.status(500).json({ error: 'Internal server error' });
+  }
+};
+
 
   exports.getSupplyOrderById = async (req, res) => {
     try {

@@ -27,7 +27,9 @@ const SupplyOrders = () => {
             </div>
             <div className="d-flex vh-100 justify-content-center align-items-center">
                 <div className="w-80 bg-white rounded p-3">
-                    <h1>Supply Orders Page</h1>
+                    <div className='headers'>
+                        <h2>Supply Orders</h2>
+                    </div>
                     <div className="table-responsive">
                         <table className="table table-bordered">
                             <thead className="thead-dark">

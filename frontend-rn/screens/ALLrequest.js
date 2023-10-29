@@ -31,7 +31,7 @@ const ALLrequest = () => {
 
   useEffect(() => {
     // Fetch requests data from the backend API
-    axios.get('http://192.168.1.13:3018/api/request')
+    axios.get('http://192.168.1.5:3018/api/request')
       .then((response) => {
         setRequests(response.data);
         setFilteredRequests(response.data); 
@@ -55,7 +55,7 @@ const ALLrequest = () => {
   };
 
   const handleDelete = (_id) => {
-    axios.delete(`http://192.168.1.13:3018/api/request/${_id}`)
+    axios.delete(`http://192.168.1.5:3018/api/request/${_id}`)
       .then((response) => {
         setRequests(requests.filter(request => request.requestId !== _id));
         Alert.alert('Request deleted successfully');
@@ -68,7 +68,7 @@ const ALLrequest = () => {
   };
 
   const handleUpdate = (_id) => {
-    axios.put(`http://192.168.1.13:3018/api/request/${_id}`, updateData, {
+    axios.put(`http://192.168.1.5:3018/api/request/${_id}`, updateData, {
       headers: {
         'Content-Type': 'application/json',
       }
@@ -158,7 +158,9 @@ const ALLrequest = () => {
   return (
     <View style={styles.container}>
       <View style={styles.separator} />
-      <Text style={styles.pageTitle}> Order Requests Page</Text>
+      {/* <Button title="back" onPress={() => navigation.navigate("Delevery_page")} style={styles.allRequestsButton} /> */}
+      <Text style={styles.pageTitle}> Order Requests</Text>
+
       <View style={styles.searchContainer}>
       <TextInput
         style={styles.input}
@@ -243,6 +245,14 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: '#ccc',
     marginBottom: 16,
+  },
+  allRequestsButton: {
+    marginTop: 10,
+    marginBottom: 20,
+    paddingVertical: 20, // Increase the height
+  paddingHorizontal: 30, // Increase the width
+  backgroundColor:'	#008000',
+    
   },
   item: {
     marginLeft: 16,
@@ -332,7 +342,3 @@ const styles = StyleSheet.create({
 });
 
 export default ALLrequest;
-
-
-
-

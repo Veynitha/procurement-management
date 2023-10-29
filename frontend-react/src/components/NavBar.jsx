@@ -12,6 +12,7 @@ const NavBar = () => {
                 <li><Link to={'/invoices'} className='side-bar-link'>Invoices</Link></li>
                 <li><Link to={'/supplyOrders'} className='side-bar-link'>Supplier Depots</Link></li>
                 <li><Link to={'/requests'} className='side-bar-link'>Policies</Link></li>
+                <li><Link to={'/alldeliveries'} className='side-bar-link'>Deliveries</Link></li>
             </ul>
         </div>
     );
