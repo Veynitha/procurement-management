@@ -14,6 +14,9 @@ const Invoices = () => {
             .get("http://localhost:3018/api/get-invoices")
             .then(response => {
                 setRequests(response.data);
+                console.log(requests)
+                console.log('Hackathon test')
+
             })
             .catch((error) => {
                 console.error("Error fetching data:", error);
