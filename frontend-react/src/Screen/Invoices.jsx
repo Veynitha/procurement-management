@@ -14,6 +14,7 @@ const Invoices = () => {
             .then(response => {
                 setRequests(response.data);
                 console.log(requests)
+                console.log('Hackathon test')
             })
             .catch((error) => {
                 console.error("Error fetching data:", error);
