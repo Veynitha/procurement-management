@@ -46,7 +46,7 @@ const ViewPurchaseOrder = () => {
                     }
                     else {
                         console.log("Error placing Supply Order")
-                        console.log('Hackathon change')
+                        console.log('Challenge 2 change')
                     }
                 })
 
