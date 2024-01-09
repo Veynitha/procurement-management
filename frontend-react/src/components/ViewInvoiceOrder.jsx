@@ -23,6 +23,7 @@ const ViewInvoiceOrder = () => {
                 setItems([...items, ...result.data.items]);
             });
         } catch (error) {
+            console.log('Demo-log')
             // Handle errors
         }
     }, [id, items]);
