@@ -24,6 +24,7 @@ const ViewInvoiceOrder = () => {
             });
         } catch (error) {
             console.log('Demo-log')
+            console.log('Hiran change')
             // Handle errors
         }
     }, [id, items]);
